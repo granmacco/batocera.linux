@@ -1,0 +1,14 @@
+diff --git a/xf86drm.c b/xf86drm.c
+index edfeb34..316e9fd 100644
+--- a/xf86drm.c
++++ b/xf86drm.c
+@@ -977,6 +977,9 @@ drm_public int drmSetClientCap(int fd, uint64_t capability, uint64_t value)
+ {
+     struct drm_set_client_cap cap;
+ 
++    // batocera - don't add more planes so that all programs indexes are the sames
++    if(capability == DRM_CLIENT_CAP_UNIVERSAL_PLANES) return 0;
++
+     memclear(cap);
+     cap.capability = capability;
+     cap.value = value;
